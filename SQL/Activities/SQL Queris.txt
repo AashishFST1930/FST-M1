@@ -1,0 +1,232 @@
+Activity1 : Create table and describe table
+
+
+-- Create salesman table
+CREATE TABLE salesman (
+    salesman_id int,
+    salesman_name varchar2(32),
+    salesman_city varchar2(32),
+    commission int
+);
+
+DESCRIBE salesman
+
+
+
+
+--Activity 2
+
+INSERT ALL
+    INTO salesman VALUES(5005, 'Pit Alex', 'London', 11)
+    INTO salesman VALUES(5006, 'McLyon', 'Paris', 14)
+    INTO salesman VALUES(5007, 'Paul Adam', 'Rome', 13)
+    INTO salesman VALUES(5003, 'Lauson Hen', 'San Jose', 12)
+SELECT 1 FROM DUAL
+
+    INSERT INTO salesman VALUES(5001, 'James Hoog', 'New York', 15);
+	INSERT INTO salesman VALUES(5002, 'Nail Knite', 'Paris', 13);
+
+	SELECT * From salesman;
+
+
+-- Activiy 3
+--Show data from the salesman_id and salesman_city columns
+	SELECT salesman_id, salesman_name FROM salesman;
+--Show data of salesman from Paris
+	SELECT * FROM salesman WHERE salesman_city='Paris';
+--Show salesman_id and commission of Paul Adam
+	SELECT salesman_id,commission FROM salesman WHERE salesman_name='Paul Adam';
+
+
+
+
+
+--Activity4 Adding new column in salesman table
+
+-- Add the grade column
+	ALTER TABLE salesman ADD grade int;
+
+-- Update the values in the grade column
+	UPDATE salesman SET grade=100;
+
+-- Display data
+	SELECT * FROM salesman;
+
+
+
+--Activity 5 : In this activity we will be updating the data in the salesman table.
+
+--Update the grade score of salesmen from Rome to 200.
+	UPDATE salesman SET grade = 200 WHERE salesman_name ='Pit Alex';
+--Update the grade score of James Hoog to 300.
+	UPDATE salesman SET grade = 300 WHERE salesman_name ='James Hoog';
+--Update the name McLyon to Pierre.
+	UPDATE salesman SET salesman_name = 'Pierre' WHERE salesman_name ='McLyon';
+
+SELECT * FROM salesman;
+
+
+
+
+
+
+--Activity 6 :Once the table has been successfully created, write queries to output the following:
+
+--Get all salesman ids without any repeated values
+SELECT DISTINCT salesman_id FROM orders;
+--Display the order number ordered by date in ascending order
+    SELECT order_date, order_no FROM orders ORDER BY order_date;
+--Display the order number ordered by purchase amount in descending order
+	SELECT order_no, purchase_amount FROM orders ORDER BY purchase_amount DESC;
+--Display the full data of orders that have purchase amount less than 500.
+
+    SELECT * FROM orders WHERE purchase_amount <500;
+--Display the full data of orders that have purchase amount between 1000 and 2000.
+
+SELECT * FROM orders WHERE purchase_amount BETWEEN 1000 AND 2000;
+
+
+
+-- Activity 7 : Once the table has been successfully created, write queries to output the following:
+
+Get all salesman ids without any repeated values
+Display the order number ordered by date in ascending order
+Display the order number ordered by purchase amount in descending order
+Display the full data of orders that have purchase amount less than 500.
+Display the full data of orders that have purchase amount between 1000 and 2000.
+--------------------------------------------------------------------------------------------------------------------
+-- 
+select distinct salesman_id from orders;
+
+select order_no, order_date from orders order by order_date;
+
+
+select order_no, purchase_amount from orders order by purchase_amount DESC;
+
+
+select * from orders where purchase_amount < 500;
+
+select * from orders where purchase_amount between 1000 and 2000;
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+-- Activity 8 : In this activity we will using the orders table to perform aggregate operations using GROUP BY.
+
+Write SQL queries to get the following results:
+
+Write an SQL statement to find the highest purchase amount ordered by the each customer with their ID and highest purchase amount.
+Write an SQL statement to find the highest purchase amount on '2012-08-17' for each salesman with their ID.
+Write an SQL statement to find the highest purchase amount with their ID and order date, for only those customers who have a higher purchase amount within the list [2030, 3450, 5760, 6000].
+
+
+
+
+
+SELECT customer_id, MAX(purchase_amount) AS "Max Amount" FROM orders GROUP BY customer_id;
+
+SELECT salesman_id, order_date, MAX(purchase_amount) AS "Max Amount" FROM orders 
+WHERE order_date=To_DATE('2012/08/17', 'YYYY/MM/DD') GROUP BY salesman_id, order_date;
+
+SELECT customer_id, order_date, MAX(purchase_amount) AS "Max Amount" FROM orders
+GROUP BY customer_id, order_date
+HAVING MAX(purchase_amount) IN(2030, 3450, 5760, 6000);
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Activity 9
+In this activity we will using the salesman, orders, and the customers table to perform JOIN operations on both tables.
+
+Before we start the activity, let us create the customers table:
+
+
+
+
+
+create table customers (
+    customer_id int primary key, customer_name varchar(32),
+    city varchar(20), grade int, salesman_id int);
+
+-- Insert values into it
+INSERT ALL
+    INTO customers VALUES (3002, 'Nick Rimando', 'New York', 100, 5001)
+    INTO customers VALUES (3007, 'Brad Davis', 'New York', 200, 5001)
+    INTO customers VALUES (3005, 'Graham Zusi', 'California', 200, 5002)
+    INTO customers VALUES (3008, 'Julian Green', 'London', 300, 5002)
+    INTO customers VALUES (3004, 'Fabian Johnson', 'Paris', 300, 5006)
+    INTO customers VALUES (3009, 'Geoff Cameron', 'Berlin', 100, 5003)
+    INTO customers VALUES (3003, 'Jozy Altidor', 'Moscow', 200, 5007)
+    INTO customers VALUES (3001, 'Brad Guzan', 'London', 300, 5005)
+SELECT 1 FROM DUAL;
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Activity 10
+In this activity we will using the salesman, orders, and the customers table to perform Subquery operations on both tables.
+
+Write queries for the following:
+
+Write a query to find all the orders issued against the salesman who may works for customer whose id is 3007.
+Write a query to find all orders attributed to a salesman in New York.
+Write a query to count the customers with grades above New York's average.
+Write a query to extract the data from the orders table for those salesman who earned the maximum commission
+
+
+
+SELECT * FROM orders
+WHERE salesman_id=(SELECT DISTINCT salesman_id FROM orders WHERE customer_id=3007);
+
+
+SELECT * FROM orders
+WHERE salesman_id IN (SELECT salesman_id FROM salesman WHERE salesman_city='New York');
+
+SELECT grade, COUNT(*) FROM customers
+GROUP BY grade HAVING grade>(SELECT AVG(grade) FROM customers WHERE city='New York');
+
+SELECT order_no, purchase_amount, order_date, salesman_id FROM orders
+WHERE salesman_id IN( SELECT salesman_id FROM salesman
+WHERE commission=( SELECT MAX(commission) FROM salesman));
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Activity 11
+These are bonus activities that you can try:
+
+Write a query that produces the name and number of each salesman and each customer with more than one current order. Put the results in alphabetical order.
+Write a query to make a report of which salesman produce the largest and smallest orders on each date. Also add a column that shows "highest on" and "lowest on" values.
+
+
+
+SELECT customer_id, customer_name FROM customers a
+WHERE 1<(SELECT COUNT(*) FROM orders b WHERE a.customer_id = b.customer_id)
+UNION
+SELECT salesman_id, salesman_name FROM salesman a
+WHERE 1<(SELECT COUNT(*) FROM orders b WHERE a.salesman_id = b.salesman_id)
+ORDER BY customer_name;
+
+SELECT a.salesman_id, a.salesman_name, o.order_no, 'highest on', o.order_date, o.purchase_amount FROM salesman a, orders o
+WHERE a.salesman_id=o.salesman_id
+AND o.purchase_amount=(SELECT MAX(purchase_amount) FROM orders c WHERE c.order_date = o.order_date)
+UNION
+SELECT a.salesman_id, a.salesman_name, o.order_no, 'lowest on', o.order_date, o.purchase_amount FROM salesman a, orders o
+WHERE a.salesman_id=o.salesman_id
+AND o.purchase_amount=(SELECT MIN(purchase_amount) FROM orders c WHERE c.order_date = o.order_date)
+ORDER BY order_date;
+
+
+
+
+
+
+
+
+
