@@ -1,81 +1,69 @@
 package Activity;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.openqa.selenium.devtools.v135.fetch.model.AuthChallengeResponse.Response;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+
 public class Activity2 {
-	@Test(priority=1)
-	public void addNewUserFromFile() throws IOException {
-		// Import JSON file
-		FileInputStream inputJSON = new FileInputStream("path/to/userInfo.json");
+    // Driver Declaration
+    AndroidDriver driver;
 
-		Response response = given()
-			.baseUri("https://petstore.swagger.io/v2/user") // Set base URI
-			.header("Content-Type", "application/json") // Set headers
-			.body(inputJSON) // Pass request body from file
-			.when().post(); // Send POST request
+    // Set up method
+    @BeforeClass
+    public void setUp() throws MalformedURLException, URISyntaxException {
+        // Desired Capabilities
+        UiAutomator2Options options = new UiAutomator2Options();
+        options.setPlatformName("android");
+        options.setAutomationName("UiAutomator2");
+        options.setAppPackage("com.android.chrome");
+        options.setAppActivity("com.google.android.apps.chrome.Main");
+        options.noReset();
 
-		inputJSON.close();
+        // Set the Appium server URL
+        URL serverURL = new URI("http://localhost:4723").toURL();
 
-		// Assertion
-		response.then().body("code", equalTo(200));
-		response.then().body("message", equalTo("9901"));
-	}
-	
-	@Test(priority=2)
-	public void getUserInfo() {
-		// Import JSON file to write to
-		File outputJSON = new File("src/test/java/activities/userGETResponse.json");
+        // Driver Initialization
+        driver = new AndroidDriver(serverURL, options);
 
-		Response response = given()
-			.baseUri("https://petstore.swagger.io/v2/user") // Set base URI
-			.header("Content-Type", "application/json") // Set headers
-			.pathParam("username", "justinc") // Pass request body from file
-			.when().get("/{username}"); // Send POST request
-		
-		// Get response body
-		String resBody = response.getBody().asPrettyString();
+        // Open the page in Chrome
+        driver.get("https://training-support.net");
+    }
 
-		try {
-			// Create JSON file
-			outputJSON.createNewFile();
-			// Write response body to external file
-			FileWriter writer = new FileWriter(outputJSON.getPath());
-			writer.write(resBody);
-			writer.close();
-		} catch (IOException excp) {
-			excp.printStackTrace();
-		}
-		
-		// Assertion
-		response.then().body("id", equalTo(9901));
-		response.then().body("username", equalTo("justinc"));
-		response.then().body("firstName", equalTo("Justin"));
-		response.then().body("lastName", equalTo("Case"));
-		response.then().body("email", equalTo("justincase@mail.com"));
-		response.then().body("password", equalTo("password123"));
-		response.then().body("phone", equalTo("9812763450"));
-	}
-	
-	@Test(priority=3)
-	public void deleteUser() throws IOException {
-		Response response = given()
-			.baseUri("https://petstore.swagger.io/v2/user") // Set base URI
-			.header("Content-Type", "application/json") // Set headers
-			.pathParam("username", "justinc") // Add path parameter
-			.when().delete("/{username}"); // Send POST request
+    // Test method
+    @Test
+    public void chromeTest() {
+        // Find heading on the page
+        String pageHeading = driver.findElement(AppiumBy.xpath(
+                "//android.widget.TextView[@text='Training Support']"
+        )).getText();
 
-		// Assertion
-		response.then().body("code", equalTo(200));
-		response.then().body("message", equalTo("justinc"));
-	}
+        // Print to console
+        System.out.println("Heading: " + pageHeading);
+
+        // Find and click the About Us link
+        driver.findElement(AppiumBy.accessibilityId("About Us")).click();
+
+        // Find heading of new page and print to console
+        String aboutPageHeading = driver.findElement(AppiumBy.xpath(
+                "//android.widget.TextView[@text='About Us']"
+        )).getText();
+        System.out.println(aboutPageHeading);
+    }
+
+
+    // Tear down method
+    @AfterClass
+    public void tearDown() {
+        // Close the app
+        driver.quit();
+    }
 }
