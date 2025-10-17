@@ -1,222 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="8f63ada1-4854-4ac7-b702-68f38d13d128" created="3.61.0" activeEnvironment="Default environment" encryptionMode="Not encrypted" name="REST Project 6" projectVersion="" updated="3.61.0 2025-06-17T10:42:49Z" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="dc68a5f3-ee1a-4e77-a7e6-6144a672cbfa" created="3.61.0" activeEnvironment="Default environment" encryptionMode="Not encrypted" name="Activity6_JDBC" projectVersion="" updated="3.61.0 2025-06-17T10:42:49Z" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
-  <con:interface xsi:type="con:RestService" id="aea05bc3-9ee8-4bb3-ab82-4f6260853b1d" wadlVersion="http://wadl.dev.java.net/2009/02" name="https://api.github.com" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <con:settings id="2cb72d07-16b7-4cb7-9015-268dc0601a17"/>
-    <con:definitionCache type="TEXT" rootPart=""/>
+  <con:interface xsi:type="con:RestService" id="500dd00b-ff7c-412e-a337-b9e3a9947f92" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://ipwhois.app" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:settings id="41e3ccc9-2df9-447c-88a9-fa5a04d7ff23"/>
+    <con:definitionCache/>
     <con:endpoints>
-      <con:endpoint>https://api.github.com</con:endpoint>
+      <con:endpoint>http://ipwhois.app</con:endpoint>
     </con:endpoints>
-    <con:resource name="Keys" path="/user/keys" id="eb9d30c5-8b83-4344-89b2-e94fbc69b936">
+    <con:resource name="IP" path="/json/{IP}" id="47aa2dcb-70bf-4b06-9fc5-c625fe17a51f">
       <con:settings/>
       <con:parameters/>
-      <con:method name="Keys" id="975cb781-6ace-429e-8d51-f7c7d6c3649e" method="POST">
+      <con:method name="IP" id="b10449a2-6687-4fc1-a496-3461c3c26b3e" method="GET">
         <con:settings/>
-        <con:parameters/>
+        <con:parameters>
+          <con:parameter required="true">
+            <con:name>IP</con:name>
+            <con:value>IP</con:value>
+            <con:style>TEMPLATE</con:style>
+            <con:default>IP</con:default>
+            <con:path xsi:nil="true"/>
+            <con:description xsi:nil="true"/>
+          </con:parameter>
+        </con:parameters>
         <con:representation type="RESPONSE">
           <con:mediaType>application/json; charset=utf-8</con:mediaType>
-          <con:status>201</con:status>
+          <con:status>200</con:status>
           <con:params/>
-          <con:element xmlns:keys="https://api.github.com/user/keys">keys:Response</con:element>
+          <con:element xmlns:ns="http://ipwhois.app/json/144.54.7.148">ns:Response</con:element>
         </con:representation>
-        <con:representation type="REQUEST">
-          <con:mediaType>application/json</con:mediaType>
-          <con:params/>
-        </con:representation>
-        <con:representation type="FAULT">
-          <con:mediaType>application/json; charset=utf-8</con:mediaType>
-          <con:status>422</con:status>
-          <con:params/>
-          <con:element xmlns:keys="https://api.github.com/user/keys">keys:Fault</con:element>
-        </con:representation>
-        <con:request name="Request 1" id="3eddd77f-40ae-4b6b-a34f-131cfce1fe6f" mediaType="application/json">
+        <con:request name="Request 1" id="4e1c2a13-4e9d-4cd1-9c95-34af747bf699" mediaType="application/json">
           <con:settings/>
-          <con:endpoint>https://api.github.com</con:endpoint>
-          <con:parameters/>
-        </con:request>
-      </con:method>
-    </con:resource>
-    <con:resource name="KeyId" path="/user/keys/{keyId}" id="a947a1b6-e560-4427-a65e-f53be9adadc8">
-      <con:settings/>
-      <con:parameters/>
-      <con:method name="KeyId" id="38d9c3f9-de58-447c-b4a1-3baf8fd7ba4f" method="GET">
-        <con:settings/>
-        <con:parameters>
-          <con:parameter required="true">
-            <con:name>keyId</con:name>
-            <con:value>keyId</con:value>
-            <con:style>TEMPLATE</con:style>
-            <con:default>keyId</con:default>
-            <con:path xsi:nil="true"/>
-            <con:description xsi:nil="true"/>
-          </con:parameter>
-        </con:parameters>
-        <con:representation type="FAULT">
-          <con:mediaType>application/json; charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
-          <con:params/>
-          <con:element xmlns:key="https://api.github.com/user/keys/keyId">key:Fault</con:element>
-        </con:representation>
-        <con:request name="Request 1" id="d25ab2d5-db87-4d72-8765-4a00b8f08562" mediaType="application/json">
-          <con:settings/>
-          <con:endpoint>https://api.github.com</con:endpoint>
+          <con:endpoint>http://ipwhois.app</con:endpoint>
           <con:parameters>
-            <con:entry key="keyId" value="keyId"/>
+            <con:entry key="IP" value="IP"/>
           </con:parameters>
           <con:parameterOrder>
-            <con:entry>keyId</con:entry>
-          </con:parameterOrder>
-        </con:request>
-      </con:method>
-      <con:method name="KeyId 2" id="d09de6f8-5a9a-48ee-9924-311dfdcbb335" method="DELETE">
-        <con:settings/>
-        <con:parameters>
-          <con:parameter required="true">
-            <con:name>keyId</con:name>
-            <con:value>keyId</con:value>
-            <con:style>TEMPLATE</con:style>
-            <con:default>keyId</con:default>
-            <con:path xsi:nil="true"/>
-            <con:description xsi:nil="true"/>
-          </con:parameter>
-        </con:parameters>
-        <con:representation type="FAULT">
-          <con:mediaType>application/json; charset=utf-8</con:mediaType>
-          <con:status>404</con:status>
-          <con:params/>
-          <con:element xmlns:key="https://api.github.com/user/keys/keyId">key:Fault</con:element>
-        </con:representation>
-        <con:representation type="REQUEST">
-          <con:mediaType>application/json</con:mediaType>
-          <con:params/>
-        </con:representation>
-        <con:request name="Request 1" id="f1c42dba-a032-453b-80cf-341a69e68b01" mediaType="application/json">
-          <con:settings/>
-          <con:endpoint>https://api.github.com</con:endpoint>
-          <con:parameters>
-            <con:entry key="keyId" value="keyId"/>
-          </con:parameters>
-          <con:parameterOrder>
-            <con:entry>keyId</con:entry>
+            <con:entry>IP</con:entry>
           </con:parameterOrder>
         </con:request>
       </con:method>
     </con:resource>
   </con:interface>
-  <con:testSuite id="05f01403-12f0-4a31-8848-040adb5d570b" name="https://api.github.com Test Suite">
-    <con:settings id="e0e79f94-e649-47f4-8295-8628a552ea73"/>
+  <con:testSuite id="4bf74721-05cb-4c40-9ded-067931189bfa" name="http://ipwhois.app Test Suite">
+    <con:settings id="dc3f0a14-b19d-46f8-b8f3-a060ab9341d1"/>
     <con:runType>SEQUENTIAL</con:runType>
-    <con:testCase id="53407da2-f60c-49b1-ba5d-596f345deb73" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Test Case" searchProperties="true" timeout="0">
+    <con:testCase id="6f882f4d-073e-457f-99af-381956aef2d0" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Activity6TestCase" searchProperties="true" timeout="0">
       <con:settings/>
-      <con:testStep type="restrequest" name="POST" id="bc729ccd-e49d-4d6b-ba00-8d212d2ff776">
+      <con:testStep type="datasource" name="DataSource" id="4717a480-9b34-4672-9f12-f5fba1a8759f">
         <con:settings/>
-        <con:config service="https://api.github.com" resourcePath="/user/keys" methodName="Keys" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="POST" id="3eddd77f-40ae-4b6b-a34f-131cfce1fe6f" mediaType="application/json" postQueryString="false">
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Data Generator">
+            <con:configuration>
+              <generatedDataCount>10</generatedDataCount>
+              <generatorsTotalNumber>1</generatorsTotalNumber>
+              <lastSelectedProperty>0</lastSelectedProperty>
+              <GeneratorType0>COMP</GeneratorType0>
+              <PropertyName0>ipAddress</PropertyName0>
+              <repetitionCountipAddress>0</repetitionCountipAddress>
+              <repeatValuesipAddress>false</repeatValuesipAddress>
+              <ComputerAddressTypeipAddress>IPv4</ComputerAddressTypeipAddress>
+              <escapeSpaceSequence/>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>ipAddress</con:property>
+          <con:restartOnRun>true</con:restartOnRun>
+          <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="restrequest" name="GetIp" id="867267e2-697f-4df1-b99f-47a8687ebee1">
+        <con:settings/>
+        <con:config service="http://ipwhois.app" resourcePath="/json/{IP}" methodName="IP" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:restRequest name="GetIp" id="4e1c2a13-4e9d-4cd1-9c95-34af747bf699" mediaType="application/json">
             <con:settings>
               <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
             </con:settings>
-            <con:endpoint>https://api.github.com</con:endpoint>
-            <con:request>
-{ 
-    "title": "TestKey",
-    "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID+ifNhbWEvviqGmbNzrv42TOGfW8M96cpDJLqaZzRrG"
-}
-
-</con:request>
-            <con:originalUri>https://api.github.com/user/keys</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="e36367d7-8588-4a09-8bc2-e5c93f4c0a8e" name="Valid HTTP Status Codes">
-              <con:settings/>
-              <con:configuration>
-                <codes>201</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:selectedAuthProfile>APIProject</con:selectedAuthProfile>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:parameters/>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="transfer" name="GetKeyID" id="32f82edc-c887-425d-afbe-b70fce129dea">
-        <con:settings/>
-        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>Path</con:name>
-            <con:sourceStep>POST</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetStep>GET</con:targetStep>
-            <con:targetPath/>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
-            <con:name>Path2</con:name>
-            <con:sourceStep>POST</con:sourceStep>
-            <con:sourcePath>$.id</con:sourcePath>
-            <con:targetStep>DELETE</con:targetStep>
-            <con:upgraded>true</con:upgraded>
-          </con:transfers>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="GET" id="156a717f-2082-4abd-b0aa-4fa008278f12">
-        <con:settings/>
-        <con:config service="https://api.github.com" resourcePath="/user/keys/{keyId}" methodName="KeyId" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="GET" id="d25ab2d5-db87-4d72-8765-4a00b8f08562" mediaType="application/json">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>https://api.github.com</con:endpoint>
+            <con:endpoint>http://ipwhois.app</con:endpoint>
             <con:request/>
-            <con:originalUri>https://api.github.com/user/keys/keyId</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="18b12924-a5af-4004-a40a-99f00f5028f1" name="Valid HTTP Status Codes">
-              <con:settings/>
-              <con:configuration>
-                <codes>201</codes>
-              </con:configuration>
-            </con:assertion>
-            <con:credentials>
-              <con:selectedAuthProfile>APIProject</con:selectedAuthProfile>
-              <con:authType>No Authorization</con:authType>
-            </con:credentials>
-            <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
-            <con:parameters>
-              <con:entry key="keyId" value="keyId"/>
-            </con:parameters>
-            <con:parameterOrder>
-              <con:entry>keyId</con:entry>
-            </con:parameterOrder>
-          </con:restRequest>
-        </con:config>
-      </con:testStep>
-      <con:testStep type="restrequest" name="DELETE" id="09c9823e-69f8-43bd-94cd-21a6c16b1289">
-        <con:settings/>
-        <con:config service="https://api.github.com" resourcePath="/user/keys/{keyId}" methodName="KeyId 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-          <con:restRequest name="DELETE" id="f1c42dba-a032-453b-80cf-341a69e68b01" mediaType="application/json" postQueryString="false">
-            <con:settings>
-              <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
-            </con:settings>
-            <con:endpoint>https://api.github.com</con:endpoint>
-            <con:request/>
-            <con:originalUri>https://api.github.com/user/keys/keyId</con:originalUri>
-            <con:assertion type="Valid HTTP Status Codes" id="1ebb3411-1c72-4647-958a-963703a9564a" name="Valid HTTP Status Codes">
+            <con:originalUri>http://ipwhois.app/json/144.54.7.148</con:originalUri>
+            <con:assertion type="Valid HTTP Status Codes" id="86979e49-daf6-4f1c-bd80-94c5bd4d9545" name="Valid HTTP Status Codes">
               <con:settings/>
               <con:configuration>
                 <codes>200</codes>
               </con:configuration>
             </con:assertion>
             <con:credentials>
-              <con:selectedAuthProfile>APIProject</con:selectedAuthProfile>
+              <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
               <con:authType>No Authorization</con:authType>
             </con:credentials>
             <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
             <con:parameters>
-              <con:entry key="keyId" value="keyId"/>
+              <con:entry key="IP" value="${DataSource#ipAddress}"/>
             </con:parameters>
             <con:parameterOrder>
-              <con:entry>keyId</con:entry>
+              <con:entry>IP</con:entry>
             </con:parameterOrder>
           </con:restRequest>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasink" name="Data Sink" id="9b57edid-ffa6-46a7-8cec-818349067547">
+        <con:settings/>
+        <con:config xsi:type="con:DataSinkStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSink type="JDBC">
+            <con:configuration>
+              <driver>com.mysql.jdbc.Driver</driver>
+              <connstr>jdbc:mysql://db4free.net:3306/fstm1db?user=fstm1db&amp;password=PASS_VALUE</connstr>
+              <pass>6Y6NowPybq</pass>
+              <Connection>Activity6( Default environment )</Connection>
+              <query>INSERT INTO coordinates VALUES (?,?,?);</query>
+              <stored-procedure>false</stored-procedure>
+            </con:configuration>
+          </con:dataSink>
+          <con:properties>
+            <con:property>
+              <con:name>country</con:name>
+              <con:value>${GetIp#Response#$['country']}</con:value>
+            </con:property>
+            <con:property>
+              <con:name>latitude</con:name>
+              <con:value>${GetIp#Response#$['latitude']}</con:value>
+            </con:property>
+            <con:property>
+              <con:name>longitude</con:name>
+              <con:value>${GetIp#Response#$['longitude']}</con:value>
+            </con:property>
+          </con:properties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="Data Source Loop" id="a3bc2iuf-0d46-4cb9-b4ee-4b235cb525fc">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource</dataSourceStep>
+          <targetStep>Request 1</targetStep>
+          <discardResults>true</discardResults>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -225,25 +142,19 @@
     <con:properties/>
     <con:reportParameters/>
   </con:testSuite>
-  <con:requirements/>
   <con:properties/>
   <con:wssContainer/>
-  <con:databaseConnectionContainer/>
+  <con:databaseConnectionContainer>
+    <con:databaseConnection>
+      <con:name>Activity6</con:name>
+      <con:driver>com.mysql.jdbc.Driver</con:driver>
+      <con:connectionString>jdbc:mysql://db4free.net:3306/fstm1db?user=fstm1db&amp;password=PASS_VALUE</con:connectionString>
+      <con:password>6Y6NowPybq</con:password>
+      <con:connectionProperties/>
+    </con:databaseConnection>
+  </con:databaseConnectionContainer>
   <con:jmsConnectionContainer/>
-  <con:oAuth2ProfileContainer>
-    <con:oAuth2Profile>
-      <con:name>APIProject</con:name>
-      <con:type>OAuth 2.0</con:type>
-      <con:accessToken>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</con:accessToken>
-      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
-      <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
-      <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
-      <con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow>
-      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
-      <con:jwtConfiguration/>
-      <con:responseType>id_token</con:responseType>
-    </con:oAuth2Profile>
-  </con:oAuth2ProfileContainer>
+  <con:oAuth2ProfileContainer/>
   <con:oAuth1ProfileContainer/>
   <con:reporting>
     <con:xmlTemplates/>
@@ -278,19 +189,6 @@
 // pw.close()
 // fos.close()</con:script>
   </con:eventHandlers>
-  <con:authRepository>
-    <con:oAuth20AuthEntry>
-      <con:name>APIProject</con:name>
-      <con:type>OAuth 2.0</con:type>
-      <con:accessToken>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</con:accessToken>
-      <con:accessTokenPosition>HEADER</con:accessTokenPosition>
-      <con:accessTokenStatus>ENTERED_MANUALLY</con:accessTokenStatus>
-      <con:accessTokenStartingStatus>ENTERED_MANUALLY</con:accessTokenStartingStatus>
-      <con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow>
-      <con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod>
-      <con:jwtConfiguration/>
-      <con:responseType>id_token</con:responseType>
-    </con:oAuth20AuthEntry>
-  </con:authRepository>
+  <con:authRepository/>
   <con:tags/>
 </con:soapui-project>
