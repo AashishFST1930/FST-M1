@@ -46,12 +46,12 @@
     <con:runType>SEQUENTIAL</con:runType>
     <con:testCase id="232e64c1-c273-486d-b83d-a2d5eba9daea" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="http://ipwhois.app Test Case 1" searchProperties="true" timeout="0">
       <con:settings/>
-      <con:testStep type="datasource" name="DataSource" id="bd146b34-afac-4038-a987-fb1dcb6d0c81">
+      <con:testStep type="datasource" name="DataSource" id="bdo46b34-arec-4038-a987-fb1dcr3d0c81">
         <con:settings/>
         <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:dataSource type="Excel">
             <con:configuration>
-              <file>C:/Users/VinutaGaniger/Documents/Sample data.xlsx</file>
+              <file>C:\Users\AashishMehta/Documents/Testdata.xlsx</file>
               <worksheet/>
               <cell>A2</cell>
               <ignoreEmpty>false</ignoreEmpty>
